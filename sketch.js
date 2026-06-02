@@ -14,16 +14,39 @@ let personagem_colisao = personagem_tamanho / 2;
 const PLATAFORMA_ALTURA = 40;
 const PLATAFORMA_POSICAO = SCREEN_Y - PLATAFORMA_ALTURA;
 
+// Debug
+let modoDebug = false;
+let debugMostrarPosicao = true;
+let debugMostrarTeclaPressionada = true;
+
 function setup() {
-    createCanvas(SCREEN_X, SCREEN_Y);
-    colorMode(HSB);
-    noStroke();
+  createCanvas(SCREEN_X, SCREEN_Y);
+  colorMode(HSB);
+  noStroke();
 }
 
 function draw() {
-      fill(100, 220, 255);
-    ellipse(personagem_posX, personagem_posY, personagem_tamanho, personagem_tamanho);
+  fill(100, 220, 255);
+  ellipse(personagem_posX, personagem_posY, personagem_tamanho, personagem_tamanho);
 
-    fill(30, 100, 100);
-    rect(0, PLATAFORMA_POSICAO, SCREEN_X, PLATAFORMA_ALTURA);
+  fill(30, 100, 100);
+  rect(0, PLATAFORMA_POSICAO, SCREEN_X, PLATAFORMA_ALTURA);
+
+  // Ferramentas de Debug
+  // Nota: Mudar variáveis no topo do  documento
+    
+  if (modoDebug) {
+    // Mostrar Posição Atual
+    if (debugMostrarPosicao) {
+      let position = `X:${int(personagem_posX)}, Y:${int(personagem_posY)}`;
+      fill(225, 225, 255)
+      let mensagem = text(position, personagem_posX, personagem_posY - 35); 
+    }
+    // Mostrar qual tecla foi pressionada
+    if (debugMostrarTeclaPressionada) {
+      textSize(20);
+      text(key, 20, 30);
+    }
+  }
+
 }
