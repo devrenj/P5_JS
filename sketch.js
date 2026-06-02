@@ -69,6 +69,7 @@ function draw() {
   fill(30, 100, 100);
   rect(0, PLATAFORMA_POSICAO, SCREEN_X, PLATAFORMA_ALTURA);
 
+noStroke();
   function desenharFundoGradiente() {
     let stripeCount = 12;
     let stripeHeight = height / stripeCount;
@@ -84,6 +85,7 @@ function draw() {
     }
     hueOffset += 1; 
   }
+  
   // Ferramentas de Debug
   // Nota: Mudar variáveis no topo do  documento
     
