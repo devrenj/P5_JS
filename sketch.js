@@ -27,6 +27,42 @@ function setup() {
 
 function draw() {
   desenharFundoGradiente();
+
+  let leftArrowPressed = keyIsDown(LEFT_ARROW);
+  let rightArrowPressed = keyIsDown(RIGHT_ARROW);
+  let upArrowPressed = keyIsDown(UP_ARROW);
+  let shiftPressed = keyIsDown(SHIFT);
+
+  if (rightArrowPressed) {
+    personagem_posX += movimento;
+  } 
+  if (leftArrowPressed) {
+    personagem_posX -= movimento;
+  }
+
+  shiftPressed? movimento = 12.5 : movimento = 5;
+
+  velocityY += gravity;
+  personagem_posY += velocityY;
+
+  let tocandoChao = (personagem_posY + personagem_colisao >= PLATAFORMA_POSICAO);
+  
+  if (tocandoChao) {
+    personagem_posY = PLATAFORMA_POSICAO - personagem_colisao;
+    velocityY = 0;
+
+    if (upArrowPressed) {
+      velocityY = -15; 
+    }
+  }
+
+  if (personagem_posX + personagem_colisao >= SCREEN_X) {
+    personagem_posX = SCREEN_X - personagem_colisao;
+  } 
+  if (personagem_posX - personagem_colisao <= 0) {
+    personagem_posX = 0 + personagem_colisao;
+  }
+
   fill(100, 220, 255);
   ellipse(personagem_posX, personagem_posY, personagem_tamanho, personagem_tamanho);
 
