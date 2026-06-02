@@ -26,12 +26,28 @@ function setup() {
 }
 
 function draw() {
+  desenharFundoGradiente();
   fill(100, 220, 255);
   ellipse(personagem_posX, personagem_posY, personagem_tamanho, personagem_tamanho);
 
   fill(30, 100, 100);
   rect(0, PLATAFORMA_POSICAO, SCREEN_X, PLATAFORMA_ALTURA);
 
+  function desenharFundoGradiente() {
+    let stripeCount = 12;
+    let stripeHeight = height / stripeCount;
+
+    for (let y = 0; y < height; y += stripeHeight) {
+      let fadeAmount = y / height;
+      
+      let hueValue = (fadeAmount * 120 + hueOffset) % 360; 
+      
+      let currentColor = color(hueValue, 100, 70);
+      fill(currentColor);
+      rect(0, y, width, stripeHeight);
+    }
+    hueOffset += 1; 
+  }
   // Ferramentas de Debug
   // Nota: Mudar variáveis no topo do  documento
     
